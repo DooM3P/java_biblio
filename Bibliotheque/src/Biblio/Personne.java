@@ -1,19 +1,29 @@
 package Biblio;
-
 import java.util.ArrayList;
 
-public class Personne {
+abstract class Personne {
 	private String nom;
 	private String prenom;
 	private String adresse;
 	
+	//Getters
+    public String getNom() {
+        return this.nom;
+    }
+    public String getPrenom() {
+        return this.prenom;
+    }
+    public String getAdresse() {
+        return this.adresse;
+    }
+	
 	public static ArrayList<String> personnes = new ArrayList<String>();
-	//public static ArrayList<String> personnes;
 
 	public Personne(String prenom, String nom, String adresse) {
 		String idPersonnes = prenom+" "+nom;
 		if (Personne.personnes.contains(idPersonnes) == true) {
 			System.out.println(idPersonnes+" est déjà présent dans nos bases.");
+			throw new IllegalArgumentException();
 		}
 		else {
 			this.nom = nom;

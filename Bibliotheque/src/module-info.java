@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author nataf
+ * @author DooM3P
  *
  */
 module Bibliotheque {

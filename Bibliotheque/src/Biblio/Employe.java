@@ -8,9 +8,10 @@ public class Employe extends Personne{
 	private LocalDate dateEmbauche;
 	private int salaire;
 	private String service;
+	private Poste poste;
 	
 	public static ArrayList<String> services = new ArrayList<String>(Arrays.asList("Prets Livre", "Deboguage Java", "Soutien Psychologique aux dev Java", "Informatique", "Comptabilité"));
-	
+	public static int nombreDEmployes= 0;
 
 	//Getters
     public LocalDate getDateEmbauche() {
@@ -20,24 +21,42 @@ public class Employe extends Personne{
         return this.salaire;
     }
     
+    public String getService() {
+        return this.service;
+    }
+    public String getIntitulePoste() {
+        return this.poste.getIntitule();
+    }
+    
 	// Constructeurs
 	public Employe(String prenom, String nom, String adresse) {
 		super(prenom, nom, adresse);
-		this.dateEmbauche = LocalDate.now();
-		long seed = System.currentTimeMillis();
-		Random rng = new Random();
-		rng.setSeed(seed);
-		this.salaire = rng.nextInt(20147, 120000);
-		this.service = "Prets Livre";
+		if (Employe.nombreDEmployes < 100) {
+			Employe.nombreDEmployes +=1;
+			this.dateEmbauche = LocalDate.now();
+			
+			long seed = System.currentTimeMillis();
+			Random rng = new Random();
+			rng.setSeed(seed);
+			this.salaire = rng.nextInt(20147, 120000);
+			
+			this.service = "Prets Livre";
+			this.poste = new Poste("Expert Java");
+		}
+		else {
+			System.out.println("Il y a déjà trop d'employés");
+		}
+
 	}
 	
 	public Employe(String prenom, String nom, String adresse, String service) {
-		super(prenom, nom, adresse);
+		this(prenom, nom, adresse);
 		if (Employe.services.contains(service)) {
 			this.service = service;
 		}
 		else {
 			System.out.println("Mauvais service pour cette personne.");
+			return;
 		}
 		
 		
