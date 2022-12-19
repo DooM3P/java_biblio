@@ -11,7 +11,7 @@ public class Employe extends Personne{
 	private Poste poste;
 	
 	public static ArrayList<String> services = new ArrayList<String>(Arrays.asList("Prets Livre", "Deboguage Java", "Soutien Psychologique aux dev Java", "Informatique", "Comptabilité"));
-	public static int nombreDEmployes= 0;
+	//public static int nombreDEmployes= 0;
 
 	//Getters
     public LocalDate getDateEmbauche() {
@@ -31,23 +31,17 @@ public class Employe extends Personne{
 	// Constructeurs
 	public Employe(String prenom, String nom, String adresse) {
 		super(prenom, nom, adresse);
-		if (Employe.nombreDEmployes < 100) {
-			Employe.nombreDEmployes +=1;
-			this.dateEmbauche = LocalDate.now();
-			
-			long seed = System.currentTimeMillis();
-			Random rng = new Random();
-			rng.setSeed(seed);
-			this.salaire = rng.nextInt(20147, 120000);
-			
-			this.service = "Prets Livre";
-			this.poste = new Poste("Expert Java");
-		}
-		else {
-			System.out.println("Il y a déjà trop d'employés");
-		}
+		
+		long seed = System.currentTimeMillis();
+		Random rng = new Random();
+		rng.setSeed(seed);
+		this.salaire = rng.nextInt(20147, 120000);
 
-	}
+		this.dateEmbauche = LocalDate.now().minusMonths(rng.nextInt(1, 120));
+		this.service = "Prets Livre";
+		this.poste = new Poste("Expert Java");
+		}
+	
 	
 	public Employe(String prenom, String nom, String adresse, String service) {
 		this(prenom, nom, adresse);
@@ -55,7 +49,7 @@ public class Employe extends Personne{
 			this.service = service;
 		}
 		else {
-			System.out.println("Mauvais service pour cette personne.");
+			System.out.println("Le service '"+service+ "' n'est pas référencé, il faut mettre :"+ services.toString()+" nous avons mis 'Prets Livre' par défaut");
 			return;
 		}
 		

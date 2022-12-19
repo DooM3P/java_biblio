@@ -14,6 +14,7 @@ public abstract class Item {
     public String getReference() {
         return this.reference;
     }
+    
 
 	//Setters
 	public void setTitre(String titre) {

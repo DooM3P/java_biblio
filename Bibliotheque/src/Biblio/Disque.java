@@ -32,7 +32,6 @@ public class Disque extends Item {
 
 	public Disque(String insuffisant) {
 		super(insuffisant);
-		// TODO Auto-generated constructor stub
 	}
 
 }

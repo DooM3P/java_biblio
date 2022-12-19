@@ -14,10 +14,6 @@ public class Start {
 			}
 		System.out.println(Jeanmarc.getDateInscription());
 		System.out.println(Jeanmarc.getNom()+" "+Jeanmarc.getPrenom()+" "+Jeanmarc.getAdresse() );
-
-		
-		
-
 		
 		//Employe Jeanmarc3 = new Employe("Jean-Marc","Dupont");
 		//Membre Jeanmarc4 = new Membre("Jean-Marc"); OK
@@ -29,7 +25,7 @@ public class Start {
 		
 		System.out.println("Employé :");
 		Employe Jeanmarc6 = new Employe("Jean-Marc","Tudjman","65, Rue Machin","Pretfs Livre");
-		System.out.println(Jeanmarc6.getSalaire()+" "+Jeanmarc6.getService()+" "+Jeanmarc6.getIntitulePoste());
+		System.out.println(Jeanmarc6.getSalaire()+" "+Jeanmarc6.getService()+" "+Jeanmarc6.getIntitulePoste() +" "+ Jeanmarc6.getDateEmbauche());
 		
 		System.out.println("Livre :");
 		Livre bouquin = new Livre("Fondationx", "1234E78", "Isaac Asimov",LocalDate.of(2014, Month.JANUARY, 1),"Folio SF");

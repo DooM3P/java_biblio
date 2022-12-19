@@ -1,9 +1,10 @@
 package Biblio;
-import java.util.ArrayList;
+
 
 abstract class Personne {
 	private String nom;
 	private String prenom;
+	private String idPersonne;
 	private String adresse;
 	
 	//Getters
@@ -16,21 +17,16 @@ abstract class Personne {
     public String getAdresse() {
         return this.adresse;
     }
+    public String getIdPersonne() {
+        return this.idPersonne;
+    }
 	
-	public static ArrayList<String> personnes = new ArrayList<String>();
-
 	public Personne(String prenom, String nom, String adresse) {
 		String idPersonnes = prenom+" "+nom;
-		if (Personne.personnes.contains(idPersonnes) == true) {
-			System.out.println(idPersonnes+" est déjà présent dans nos bases.");
-			throw new IllegalArgumentException();
-		}
-		else {
 			this.nom = nom;
 			this.prenom = prenom;
 			this.adresse = adresse;
-			Personne.personnes.add(idPersonnes);
-		}
+			this.idPersonne = idPersonnes;
 	}
 	
 	public Personne(String nom, String prenom) {
