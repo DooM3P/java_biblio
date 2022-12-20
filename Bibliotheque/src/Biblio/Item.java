@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 public abstract class Item {
 	private String titre;
-	private String reference;
-	public static ArrayList<String> items = new ArrayList<String>();
+	private String reference; // reference identifiant l'item de manière unique (utilisée comme clé dans le dictionnaire de chaque biblio)
+	// En projet à ajouter : une variable signalant qu'il a été emprunté (ou la quantité restante d'item en stock dans une biblio donner); cela permet d'éviter de prêter deux fois le même item 
+	
+	public static ArrayList<String> items = new ArrayList<String>(); //liste globale des items (pas liée à une bibliothèque)
 	
 	//Getters	
     public String getTitre() {

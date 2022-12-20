@@ -4,7 +4,7 @@ package Biblio;
 abstract class Personne {
 	private String nom;
 	private String prenom;
-	private String idPersonne;
+	private String idPersonne;//Identifiant composant de prénom + " "+ nom
 	private String adresse;
 	
 	//Getters

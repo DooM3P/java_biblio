@@ -28,13 +28,12 @@ public class Membre extends Personne{
     
 	public Membre(String prenom, String nom, String adresse, LocalDate date) {
 		super(prenom, nom, adresse);
-		this.dateInscription = LocalDate.now();
 		this.dateInscription=date;
 	}
 	
 	public Membre(String prenom, String nom, String adresse) {
 		super(prenom, nom, adresse);
-		this.dateInscription = LocalDate.now();
+		this.dateInscription = LocalDate.now();	//Date d'inscription = maintenant si rien n'est passé
 	}
 	
 	public Membre(String prenom, String nom) {

@@ -47,7 +47,7 @@ public class Employe extends Personne{
 	}
 	
 	
-	public void addService(String service) {
+	public static void addService(String service) {
 		if (Employe.services.contains(service)) {
 			System.out.println("Le service '"+service+ "' est déjà référencé.");
 		}
@@ -70,7 +70,7 @@ public class Employe extends Personne{
 		rng.setSeed(seed);
 		this.salaire = rng.nextInt(20147, 120000);
 
-		this.dateEmbauche = LocalDate.now().minusMonths(rng.nextInt(1, 120));
+		this.dateEmbauche = LocalDate.now().minusMonths(rng.nextInt(1, 120)); // date d'embauche = maintenant - (entre 1 et 120 mois)
 		this.service = "Prets Livre";
 		this.poste = new Poste("Expert Java");
 		}
@@ -90,8 +90,12 @@ public class Employe extends Personne{
 	public Employe(String prenom, String nom, String adresse, String service, Poste poste) {
 		this(prenom, nom, adresse, service);
 		this.poste = poste;
-
-		
+	}
+	
+	
+	public Employe(String prenom, String nom, String adresse, String service, Poste poste, LocalDate date) {
+		this(prenom, nom, adresse, service, poste);
+		this.dateEmbauche = date;
 	}
 	
 	public Employe(String prenom, String nom) {

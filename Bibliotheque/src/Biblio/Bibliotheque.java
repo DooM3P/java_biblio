@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Bibliotheque {
-	private String ville;
-	private int capaciteVisiteurs;
-	private int capaciteItems;
-	private int capaciteEmploye;
+	private String ville;		// Ville
+	private int capaciteVisiteurs; // Capacité de la bibliot en visiteurs (et pas membres)
+	private int capaciteItems;	// Capacité de la bibliot en items 
+	private int capaciteEmploye;// Capacité de la bibliot en employe 
 	
-	private HashMap<String, Item> bibliItems = new HashMap<String, Item>(); // Liste items
-	private HashMap<String, Employe> bibliStaff = new HashMap<String, Employe>(); // Liste Employes
-	private HashMap<String, Membre> bibliMembers = new HashMap<String, Membre>(); // Liste membres
+	private HashMap<String, Item> bibliItems = new HashMap<String, Item>(); // Liste items => Clé en string (reference de l'item) qui pointe vers l'objet
+	private HashMap<String, Employe> bibliStaff = new HashMap<String, Employe>(); // Liste Employes ; clé : idPersonnes (cf. plus bas)
+	private HashMap<String, Membre> bibliMembers = new HashMap<String, Membre>(); // Liste membres ; clé : idPersonnes (cf. plus bas)
 
 
 	
@@ -62,7 +62,7 @@ public class Bibliotheque {
 	
     // Setters
     
-    public void addItem(Item item) {
+    public void addItem(Item item) {				//Ajoute un Item à la bibliothèque
     	if (bibliItems.containsKey(item.getReference()) && bibliItems.size()<this.capaciteItems) {
     		System.out.println("Impossible d'ajouter cet Item : déjà présent");
     	}
@@ -71,7 +71,7 @@ public class Bibliotheque {
     	}
     }
     
-    public void removeItem(Item item) {// on aurait pu également l'implémenter en reference
+    public void removeItem(Item item) {// Enlève un item ; on aurait pu également l'implémenter en reference
     	if (bibliItems.containsKey(item.getReference())) {
     		bibliItems.remove(item.getReference());
     	}
@@ -80,7 +80,7 @@ public class Bibliotheque {
     	}
     }
     
-    public void addStaff(Employe employe) {
+    public void addStaff(Employe employe) {		//Affecte un employe à la bibliothèque
     	if (bibliStaff.containsKey(employe.getIdPersonne()) && bibliStaff.size()<this.capaciteEmploye) {
     		System.out.println("Impossible d'ajouter cet Item : déjà présent ou capacité d'item dépassée.");
     	}
@@ -89,7 +89,7 @@ public class Bibliotheque {
     	}
     }  
     
-    public void removeStaff(String prenom, String nom) {
+    public void removeStaff(String prenom, String nom) {	//Enlève un employe à la bibliothèque
     	String idPersonnes = prenom+" "+nom;
     	if (bibliStaff.containsKey(idPersonnes)) {
     		bibliStaff.remove(idPersonnes);
@@ -99,7 +99,7 @@ public class Bibliotheque {
     	}
     }
 
-    public void addMember(Membre membre) {
+    public void addMember(Membre membre) {			//Ajoute un membre à la bibliothèque
     	if (bibliMembers.containsKey(membre.getIdPersonne())) {
     		System.out.println("Impossible d'ajouter cette personne : déjà présent");
     	}
@@ -107,6 +107,16 @@ public class Bibliotheque {
     		bibliMembers.put(membre.getIdPersonne(), membre);
     	}
     }  
+    
+    public void removeMember(String prenom, String nom) {	//Enlève un membre à la bibliothèque
+    	String idPersonnes = prenom+" "+nom;
+    	if (bibliMembers.containsKey(idPersonnes)) {
+    		bibliMembers.remove(idPersonnes);
+    	}
+    	else {
+    		return;
+    	}
+    }
        
     public void setCapaciteItems(int capaItems) {
     	if (capaItems > 1000 && capaItems < 150000) {
