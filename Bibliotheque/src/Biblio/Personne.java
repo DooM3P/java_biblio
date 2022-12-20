@@ -21,12 +21,18 @@ abstract class Personne {
         return this.idPersonne;
     }
 	
+    //Setters
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+	
+	
 	public Personne(String prenom, String nom, String adresse) {
 		String idPersonnes = prenom+" "+nom;
-			this.nom = nom;
-			this.prenom = prenom;
-			this.adresse = adresse;
-			this.idPersonne = idPersonnes;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.idPersonne = idPersonnes;
 	}
 	
 	public Personne(String nom, String prenom) {

@@ -48,6 +48,18 @@ public class Bibliotheque {
         return this.capaciteItems;
     }
     
+	public String getVille() {
+		return ville;
+	}
+
+	public int getCapaciteEmploye() {
+		return capaciteEmploye;
+	}
+
+	public static ArrayList<String> getVilles() {
+		return villes;
+	}
+	
     // Setters
     
     public void addItem(Item item) {
@@ -59,35 +71,68 @@ public class Bibliotheque {
     	}
     }
     
+    public void removeItem(Item item) {// on aurait pu également l'implémenter en reference
+    	if (bibliItems.containsKey(item.getReference())) {
+    		bibliItems.remove(item.getReference());
+    	}
+    	else {
+    		return;
+    	}
+    }
+    
     public void addStaff(Employe employe) {
     	if (bibliStaff.containsKey(employe.getIdPersonne()) && bibliStaff.size()<this.capaciteEmploye) {
-    		System.out.println("Impossible d'ajouter cet Item : déjà présent");
+    		System.out.println("Impossible d'ajouter cet Item : déjà présent ou capacité d'item dépassée.");
     	}
     	else {
     		bibliStaff.put(employe.getIdPersonne(), employe);
     	}
-    }    
+    }  
+    
+    public void removeStaff(String prenom, String nom) {
+    	String idPersonnes = prenom+" "+nom;
+    	if (bibliStaff.containsKey(idPersonnes)) {
+    		bibliStaff.remove(idPersonnes);
+    	}
+    	else {
+    		return;
+    	}
+    }
 
     public void addMember(Membre membre) {
-    	if (bibliMembers.containsKey(membre.getIdPersonne())&& bibliMembers.size()<this.capaciteVisiteurs) {
-    		System.out.println("Impossible d'ajouter cet Item : déjà présent");
+    	if (bibliMembers.containsKey(membre.getIdPersonne())) {
+    		System.out.println("Impossible d'ajouter cette personne : déjà présent");
     	}
     	else {
     		bibliMembers.put(membre.getIdPersonne(), membre);
     	}
     }  
+       
+    public void setCapaciteItems(int capaItems) {
+    	if (capaItems > 1000 && capaItems < 150000) {
+			this.capaciteItems = capaItems;
+		}
+    }
     
-   
-    public void setCapaciteItems(int capaI) {
-    	if (capaI > 1000 && capaI < 150000) {
-			this.capaciteItems = capaI;
+    public void setCapaciteVisiteurs(int capaVisiteurs) {
+    	if (capaVisiteurs > 30 && capaVisiteurs < 250) {
+			this.capaciteVisiteurs = capaVisiteurs;
 		}
     }
-    public void setCapaciteVisiteurs(int capaV) {
-    	if (capaV > 30 && capaV < 250) {
-			this.capaciteVisiteurs = capaV;
+	
+	public void setVille(String ville) {
+		if (villes.contains(ville)) {
+			System.out.println("La ville de "+ville+" est déjà enregistrée.");
+			return;
 		}
-    }
+		else {
+		this.ville = ville;
+		}
+	}
+
+	public void setCapaciteEmploye(int capaciteEmploye) {
+		this.capaciteEmploye = capaciteEmploye;
+	}
 	
 	// Constructeurs
 	public Bibliotheque(String ville) {
@@ -100,7 +145,7 @@ public class Bibliotheque {
 			long seed = System.currentTimeMillis();
 			Random rng = new Random();
 			rng.setSeed(seed);
-			this.capaciteVisiteurs = rng.nextInt(30, 250); // On a considéré que visiteurs = membres
+			this.capaciteVisiteurs = rng.nextInt(30, 250); // Initialisation aléatoire des capacités 
 			this.capaciteItems = rng.nextInt(1000, 150000);
 		}
 	}

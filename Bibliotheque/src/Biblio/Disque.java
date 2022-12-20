@@ -18,7 +18,7 @@ public class Disque extends Item {
 	public void setAuteur(String interprete) {
         this.interprete=interprete;
     }
-	public void setDateDeParution(LocalDate DateDeSortie) {
+	public void setDateDeSortie(LocalDate DateDeSortie) {
         this.dateDeSortie=DateDeSortie;
     }
 

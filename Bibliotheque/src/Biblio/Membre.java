@@ -11,6 +11,10 @@ public class Membre extends Personne{
     	memberItems.put(item.getReference(), item);
     }
 	
+	public void setDateInscription(LocalDate dateInscription) {
+		this.dateInscription = dateInscription;
+	}
+
 	//Getters
     public LocalDate getDateInscription() {
         return this.dateInscription;

@@ -11,7 +11,6 @@ public class Employe extends Personne{
 	private Poste poste;
 	
 	public static ArrayList<String> services = new ArrayList<String>(Arrays.asList("Prets Livre", "Deboguage Java", "Soutien Psychologique aux dev Java", "Informatique", "Comptabilité"));
-	//public static int nombreDEmployes= 0;
 
 	//Getters
     public LocalDate getDateEmbauche() {
@@ -28,6 +27,40 @@ public class Employe extends Personne{
         return this.poste.getIntitule();
     }
     
+    //Setters (Non utilisés mais présents)
+    
+	public void setDateEmbauche(LocalDate dateEmbauche) {
+		this.dateEmbauche = dateEmbauche;
+	}
+	public void setSalaire(int salaire) {
+		this.salaire = salaire;
+	}
+	
+	public void setService(String service) {
+		if (Employe.services.contains(service)) {
+			this.service = service;
+		}
+		else {
+			System.out.println("Le service '"+service+ "' n'est pas référencé. Il faut choisir parmi :" + services.toString()+" Il faut l'ajouter");
+			return;
+		}
+	}
+	
+	
+	public void addService(String service) {
+		if (Employe.services.contains(service)) {
+			System.out.println("Le service '"+service+ "' est déjà référencé.");
+		}
+		else {
+			services.add(service);
+		}
+	}
+	
+	public void setPoste(Poste poste) {
+		this.poste = poste;
+	}
+
+	
 	// Constructeurs
 	public Employe(String prenom, String nom, String adresse) {
 		super(prenom, nom, adresse);
@@ -52,13 +85,20 @@ public class Employe extends Personne{
 			System.out.println("Le service '"+service+ "' n'est pas référencé, il faut mettre :"+ services.toString()+" nous avons mis 'Prets Livre' par défaut");
 			return;
 		}
-		
+	}
+
+	public Employe(String prenom, String nom, String adresse, String service, Poste poste) {
+		this(prenom, nom, adresse, service);
+		this.poste = poste;
+
 		
 	}
+	
 	public Employe(String prenom, String nom) {
 		this(prenom, nom,"Adresse Vide");
 		this.dateEmbauche = LocalDate.now();
 	}
+	
 	public Employe(String insuffisant) {
 		super(insuffisant);		
 	}

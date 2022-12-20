@@ -26,7 +26,6 @@ public abstract class Item {
 
 	
 	//Constructor
-	
 	public Item(String titre, String reference) {
 		if (Item.items.contains(reference) == true) {
 			System.out.println(titre +" (" +reference+") est déjà référencé dans nos bases.");

@@ -38,7 +38,6 @@ public class Livre extends Item {
 
 	public Livre(String insuffisant) {
 		super(insuffisant);
-		// TODO Auto-generated constructor stub
 	}
 
 }
